@@ -6,7 +6,7 @@ import java.util.Random;
  * Represents the Snake Game apple.
  *
  * @author Ryan Baggs
- * @date Oct 19, 2021
+ * @date Oct 18, 2021
  */
 public class Apple {
 	// In game x and y.

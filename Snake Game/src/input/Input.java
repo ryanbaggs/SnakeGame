@@ -2,6 +2,12 @@ package input;
 
 import java.awt.event.*;
 
+/**
+ * 
+ *
+ * @author Ryan Baggs
+ * @date Oct 18, 2021
+ */
 public class Input implements KeyListener{
 	
 	// FLags for the W, S, A, and D keys on the keyboard. 

@@ -2,6 +2,12 @@ package engine;
 
 import window.WindowEvents;
 
+/**
+ * 
+ *
+ * @author Ryan Baggs
+ * @date Oct 18, 2021
+ */
 public class Engine extends Thread{
 	
 	private static boolean running;

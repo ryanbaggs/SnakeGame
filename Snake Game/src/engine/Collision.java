@@ -1,5 +1,11 @@
 package engine;
 
+/**
+ * 
+ *
+ * @author Ryan Baggs
+ * @date Oct 18, 2021
+ */
 public class Collision {
 	
 	public boolean appleCollision() {
