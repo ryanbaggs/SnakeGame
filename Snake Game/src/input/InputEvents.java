@@ -1,5 +1,11 @@
 package input;
 
+/**
+ * 
+ *
+ * @author Ryan Baggs
+ * @date Oct 18, 2021
+ */
 public class InputEvents {
 	
 	public static boolean isUp() {
