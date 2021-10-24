@@ -22,7 +22,7 @@ public class Window extends JFrame {
 	private static final String TITLE = "Snake Game";
 	
 	// Game version.
-	private static final String VERSION = "V: 0.0.3";
+	private static final String VERSION = "V: 0.1.0";
 	
 	private static final long serialVersionUID = -9035835475837563194L;
 	private static final boolean VISIBLE = true, FOCUSABLE = true;

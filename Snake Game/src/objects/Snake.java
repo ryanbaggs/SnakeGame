@@ -71,4 +71,13 @@ public class Snake {
 		// Add new tail Y.
 		snakePositionX.add(snakePositionY.size(), prevTailPos[Y_INDEX]);
 	}
+
+	public ArrayList<Integer> getSnakePositionX() {
+		return snakePositionX;
+	}
+
+	public ArrayList<Integer> getSnakePositionY() {
+		return snakePositionY;
+	}
+	
 }
