@@ -44,6 +44,11 @@ public class Engine extends Thread{
 		
 		// Set running.
 		running = true;
+		
+		// Initialize objects.
+		snake = new Snake();
+		apple = new Apple();
+		collision = new Collision();
 	}
 
 	/**
@@ -154,11 +159,11 @@ public class Engine extends Thread{
 	}
 	
 	private void resetGame() {
-		
+		// TODO: Reset game.
 	}
 	
 	private void endGame() {
-		
+		// TODO: End game.
 	}
 
 	/**

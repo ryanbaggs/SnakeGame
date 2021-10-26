@@ -21,15 +21,26 @@ public class Snake {
 	public static final int HEAD_INDEX = 0;
 
 	// Contains the X and Y values for the Snake.
-	ArrayList<Integer> snakePositionX = new ArrayList<Integer>();
-	ArrayList<Integer> snakePositionY = new ArrayList<Integer>();
+	ArrayList<Integer> snakePositionX;
+	ArrayList<Integer> snakePositionY;
 	
 	// Store the previous tail position to add if apple eaten.
-	int[] prevTailPos = new int[2];
+	int[] prevTailPos;
 	
 	// The X and Y indices for integer Array prevTailPos.
 	private static final byte X_INDEX = 0;
 	private static final byte Y_INDEX = 1;
+	
+	public Snake() {
+		// Initialize arrays.
+		snakePositionX = new ArrayList<Integer>();
+		snakePositionY = new ArrayList<Integer>();
+		prevTailPos = new int[2];
+		
+		// Initialize the snake head position.
+		snakePositionX.add(HEAD_INDEX, World.END/2);
+		snakePositionY.add(HEAD_INDEX, World.BOTTOM/2);
+	}
 	
 	/**
 	 * Updates the position of the Snake using the direction that it is 
