@@ -3,12 +3,22 @@ package objects;
 import java.util.ArrayList;
 
 /**
- * Represents the 
+ * Represents the in game snake. Holds and updates its own position 
+ * information and adds more to itself when an apple is eaten.
  *
  * @author Ryan Baggs
  * @date Oct 18, 2021
  */
 public class Snake {
+	
+	// Directions.
+	public static final int UP = 0;
+	public static final int DOWN = 1;
+	public static final int LEFT = 2;
+	public static final int RIGHT = 3;
+	
+	// Head index.
+	public static final int HEAD_INDEX = 0;
 
 	// Contains the X and Y values for the Snake.
 	ArrayList<Integer> snakePositionX = new ArrayList<Integer>();
@@ -34,16 +44,16 @@ public class Snake {
 		
 		// Update the X and Y direction info.
 		switch(direction) {
-			case 0: // Up -Y direction.
+			case UP: // Up -Y direction.
 				yDir = -1;
 				break;
-			case 1: // Down, +Y direction.
+			case DOWN: // Down, +Y direction.
 				yDir = 1;
 				break;
-			case 2: // Left, -X direction.
+			case LEFT: // Left, -X direction.
 				xDir = -1;
 				break;
-			case 3: // Right, +X direction.
+			case RIGHT: // Right, +X direction.
 				xDir = 1;
 				break;
 		}

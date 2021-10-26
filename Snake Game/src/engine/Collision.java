@@ -15,10 +15,10 @@ public class Collision {
 	/**
 	 * This checks to see if the Snake has collided with the Apple, eating it.
 	 * 
-	 * @param appleX
-	 * @param appleY
-	 * @param headX
-	 * @param headY
+	 * @param appleX Apple x coordinate.
+	 * @param appleY Apple y coordinate.
+	 * @param headX Snake head x coordinate.
+	 * @param headY Snake head y coordinate.
 	 * @return true if the snake has collided with the apple and false if not.
 	 */
 	public boolean appleCollision(int appleX, int appleY, int headX, 
@@ -35,8 +35,8 @@ public class Collision {
 	/**
 	 * This checks for collision between the Snake head and the World edges.
 	 * 
-	 * @param headX
-	 * @param headY
+	 * @param headX Snake head x coordinate.
+	 * @param headY Snake head y coordinate.
 	 * @return true if the Snake head has collided with any of the World 
 	 * edges.
 	 */
