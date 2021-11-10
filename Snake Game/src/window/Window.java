@@ -11,6 +11,10 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import engine.Engine;
+import engine.EngineEvents;
+import rendering.Renderer;
+
 /**
  *
  * @author Ryan Baggs
@@ -22,7 +26,7 @@ public class Window extends JFrame {
 	private static final String TITLE = "Snake Game";
 	
 	// Game version.
-	private static final String VERSION = "V: 0.0.3";
+	private static final String VERSION = "V: 0.2.0";
 	
 	private static final long serialVersionUID = -9035835475837563194L;
 	private static final boolean VISIBLE = true, FOCUSABLE = true;
@@ -78,8 +82,11 @@ public class Window extends JFrame {
 	class GamePanel extends JPanel {
 		
 		private static final long serialVersionUID = 5489194219606210773L;
+		private Renderer renderer;
 		
 		public GamePanel() {
+			renderer = new Renderer();
+			
 			setBackground(Color.black);
 		}
 		
@@ -99,8 +106,11 @@ public class Window extends JFrame {
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			
+			// Set the color to white.
+			g.setColor(Color.white);
+			
 			// Draw things.
-			g.drawString("This is my custom Panel!",10,20);
+			renderer.draw(g, EngineEvents.getGameState());
 		}
 		
 		

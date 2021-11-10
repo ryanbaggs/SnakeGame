@@ -3,23 +3,44 @@ package objects;
 import java.util.ArrayList;
 
 /**
- * Represents the 
+ * Represents the in game snake. Holds and updates its own position 
+ * information and adds more to itself when an apple is eaten.
  *
  * @author Ryan Baggs
  * @date Oct 18, 2021
  */
 public class Snake {
+	
+	// Directions.
+	public static final int UP = 0;
+	public static final int DOWN = 1;
+	public static final int LEFT = 2;
+	public static final int RIGHT = 3;
+	
+	// Head index.
+	public static final int HEAD_INDEX = 0;
 
 	// Contains the X and Y values for the Snake.
-	ArrayList<Integer> snakePositionX = new ArrayList<Integer>();
-	ArrayList<Integer> snakePositionY = new ArrayList<Integer>();
+	ArrayList<Integer> snakePositionX;
+	ArrayList<Integer> snakePositionY;
 	
 	// Store the previous tail position to add if apple eaten.
-	int[] prevTailPos = new int[2];
+	int[] prevTailPos;
 	
 	// The X and Y indices for integer Array prevTailPos.
 	private static final byte X_INDEX = 0;
 	private static final byte Y_INDEX = 1;
+	
+	public Snake() {
+		// Initialize arrays.
+		snakePositionX = new ArrayList<Integer>();
+		snakePositionY = new ArrayList<Integer>();
+		prevTailPos = new int[2];
+		
+		// Initialize the snake head position.
+		snakePositionX.add(HEAD_INDEX, World.END/2);
+		snakePositionY.add(HEAD_INDEX, World.BOTTOM/2);
+	}
 	
 	/**
 	 * Updates the position of the Snake using the direction that it is 
@@ -34,16 +55,16 @@ public class Snake {
 		
 		// Update the X and Y direction info.
 		switch(direction) {
-			case 0: // Up -Y direction.
+			case UP: // Up -Y direction.
 				yDir = -1;
 				break;
-			case 1: // Down, +Y direction.
+			case DOWN: // Down, +Y direction.
 				yDir = 1;
 				break;
-			case 2: // Left, -X direction.
+			case LEFT: // Left, -X direction.
 				xDir = -1;
 				break;
-			case 3: // Right, +X direction.
+			case RIGHT: // Right, +X direction.
 				xDir = 1;
 				break;
 		}
@@ -71,4 +92,13 @@ public class Snake {
 		// Add new tail Y.
 		snakePositionX.add(snakePositionY.size(), prevTailPos[Y_INDEX]);
 	}
+
+	public ArrayList<Integer> getSnakePositionX() {
+		return snakePositionX;
+	}
+
+	public ArrayList<Integer> getSnakePositionY() {
+		return snakePositionY;
+	}
+	
 }
