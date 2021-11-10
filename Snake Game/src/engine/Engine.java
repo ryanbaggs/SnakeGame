@@ -28,6 +28,16 @@ public class Engine extends Thread{
 	// Time elapsed during the update.
 	private static long delta;
 	
+	// Game States.
+	// Current game state.
+	static volatile int gameState;
+	// User is actively playing.
+	public static final int PLAYING = 0;
+	// Game is over.
+	public static final int GAME_OVER = 1;
+	// Game is reset, waiting for player to play.
+	public static final int RESET = 2;
+	
 	// Game objects.
 	private Snake snake;
 	private Apple apple;
@@ -44,6 +54,9 @@ public class Engine extends Thread{
 		
 		// Set running.
 		running = true;
+		
+		// Set the game state to request user to play.
+		gameState = RESET;
 		
 		// Initialize objects.
 		snake = new Snake();
