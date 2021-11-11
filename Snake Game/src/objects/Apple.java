@@ -14,7 +14,7 @@ public class Apple {
 	private int y = 0;
 	
 	// Random number generator.
-	Random random = new Random();
+	private Random random = new Random();
 	
 	public Apple() {
 		// Initialize the new Apple coordinates upon creation.

@@ -1,5 +1,7 @@
 package engine;
 
+import java.util.ArrayList;
+
 import input.InputEvents;
 import objects.Apple;
 import objects.Snake;
@@ -30,20 +32,27 @@ public class Engine extends Thread{
 	
 	// Game States.
 	// Current game state.
-	static volatile int gameState;
+	static volatile byte gameState;
 	// User is actively playing.
-	public static final int PLAYING = 0;
+	public static final byte PLAYING = 0;
 	// Game is over.
-	public static final int GAME_OVER = 1;
+	public static final byte GAME_OVER = 1;
 	// Game is reset, waiting for player to play.
-	public static final int RESET = 2;
+	public static final byte RESET = 2;
+	// Apple is eaten.
+	public static final byte APPLE_EATEN = 3;
+	// User opted to end game.
+	public static final byte END_GAME = 4;
 	
 	// Game objects.
-	private Snake snake;
-	private Apple apple;
+	private static Snake snake;
+	private static Apple apple;
 	
 	// Collision detection.
 	private Collision collision;
+	
+	// Score.
+	private static long score;
 	
 	/**
 	 * Starts the game Engine thread.
@@ -62,6 +71,9 @@ public class Engine extends Thread{
 		snake = new Snake();
 		apple = new Apple();
 		collision = new Collision();
+		
+		// Initialize the score.
+		score = 0;
 	}
 
 	/**
@@ -73,7 +85,7 @@ public class Engine extends Thread{
 		super.run();
 		
 		// Game Engine loop.
-		do {
+		while(running) {
 			
 			endTime = System.currentTimeMillis();
 			
@@ -100,7 +112,7 @@ public class Engine extends Thread{
 				// Stop the run loop.
 				running = false;
 			}
-		} while(running);
+		}
 		
 		// Terminate the Engine Thread.
 		stopThread();
@@ -110,6 +122,24 @@ public class Engine extends Thread{
 	 * Where all game updates occur.
 	 */
 	private void updateGame() {
+		switch(gameState) {
+			case PLAYING:
+				playGame();
+				break;
+			case GAME_OVER:
+				gameOver();
+				break;
+			case RESET:
+				resetGame();
+				break;
+			case APPLE_EATEN:
+				updateScore();
+			case END_GAME:
+				endGame();
+		}
+	}
+	
+	private void playGame() {
 		updateSnakeLocation();
 		checkCollision();
 	}
@@ -143,24 +173,29 @@ public class Engine extends Thread{
 		if(collision.appleCollision(apple.getX(), apple.getY(), 
 				snake.getSnakePositionX().get(Snake.HEAD_INDEX), 
 				snake.getSnakePositionY().get(Snake.HEAD_INDEX))) {
-			// Apple collision, update apple location.
-			apple.update();
-			
-			//TODO: Update score;
-			
+			gameState = APPLE_EATEN;
 		}
 		
 		if(collision.worldCollision(snake.getSnakePositionX().get(Snake.HEAD_INDEX), 
 				snake.getSnakePositionY().get(Snake.HEAD_INDEX))) {
-			//TODO: World collision.
-			gameOver();
+			// World collision.
+			gameState = GAME_OVER;
 		}
 		
 		if(collision.snakeCollision(snake.getSnakePositionX(), 
 				snake.getSnakePositionY())) {
 			// Snake collision.
-			gameOver();
+			gameState = GAME_OVER;
 		}
+	}
+	
+	/**
+	 * Checks if the user has opted to play.
+	 * 
+	 * @return if the user opted to play.
+	 */
+	private boolean checkPlaying() {
+		return InputEvents.getPlay();
 	}
 	
 	private void gameOver() {
@@ -177,6 +212,21 @@ public class Engine extends Thread{
 	
 	private void endGame() {
 		// TODO: End game.
+		
+		// Save high score.
+		
+		// Close window.
+		
+		// Stop the game engine.
+		running = false;
+	}
+	
+	/**
+	 * Updates the current game score.
+	 */
+	private void updateScore() {
+		// Increase score by 50 points.
+		score += 50l;
 	}
 
 	/**
@@ -190,6 +240,26 @@ public class Engine extends Thread{
 			// Error occurred in trying to terminate thread.
 			e.printStackTrace();
 		}
+	}
+	
+	public static ArrayList<Integer> getSnakeXLocation() {
+		return snake.getSnakePositionX();
+	}
+	
+	public static ArrayList<Integer> getSnakeYLocation() {
+		return snake.getSnakePositionY();
+	}
+	
+	public static int getAppleX() {
+		return apple.getX();
+	}
+	
+	public static int getAppleY() {
+		return apple.getY();
+	}
+
+	public static long getScore() {
+		return score;
 	}
 	
 }

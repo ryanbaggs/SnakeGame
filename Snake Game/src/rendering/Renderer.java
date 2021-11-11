@@ -6,6 +6,7 @@ package rendering;
 import java.awt.Graphics;
 
 import engine.Engine;
+import engine.EngineEvents;
 
 /**
  * Renders game objects to the JPanel. This runs on the Window thread and is 
@@ -16,10 +17,18 @@ import engine.Engine;
  */
 public class Renderer {
 	
+	// Screen size.
+	
 	public Renderer() {
 		
 	}
 	
+	/**
+	 * Draws the game objects to the JPanel.
+	 * 
+	 * @param g
+	 * @param GAME_STATE
+	 */
 	public void draw(Graphics g, int GAME_STATE) {
 		
 		switch(GAME_STATE) {
@@ -41,11 +50,16 @@ public class Renderer {
 	}
 	
 	public void drawGame(Graphics g) {
-		g.drawString("Game is playing", 20, 20);
+		// Draw snake.
+		
+		// Draw apple.
+		
+		// Draw current score.
+		g.drawString("Score: " + Long.toString(EngineEvents.getScore()), 20, 20);
 	}
 	
 	public void drawGameOver(Graphics g) {
-		g.drawString("Game is Over", 20, 20);
+		g.drawString("Game Over", 20, 20);
 	}
 	
 	public void drawReset(Graphics g) {

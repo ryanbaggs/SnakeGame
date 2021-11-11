@@ -24,4 +24,8 @@ public class InputEvents {
 		return Input.isRight();
 	}
 	
+	public static boolean getPlay() {
+		return Input.getPlay();
+	}
+	
 }

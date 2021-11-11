@@ -2,6 +2,9 @@ package input;
 
 import java.awt.event.*;
 
+import engine.Engine;
+import engine.EngineEvents;
+
 /**
  * 
  *
@@ -11,7 +14,7 @@ import java.awt.event.*;
 public class Input implements KeyListener{
 	
 	// FLags for the W, S, A, and D keys on the keyboard. 
-	private static boolean up = false, down = false, left = false, right = false;
+	private static boolean up = false, down = false, left = false, right = false, play = false;
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -29,7 +32,8 @@ public class Input implements KeyListener{
 	}
 	
 	/**
-	 * Update the flags for up, down, left, and right based on what key is typed.
+	 * Update the flags for up, down, left, and right based on what key is 
+	 * typed. Update play flag based on game state and space pressed.
 	 * 
 	 * @param e The KeyEvent that occurred.
 	 */
@@ -59,6 +63,17 @@ public class Input implements KeyListener{
 				left = false;
 				right = true;
 				break;
+			case KeyEvent.VK_SPACE:
+				play = true;
+				break;
+		}
+		
+		// Check game state, before updating play.
+		if(EngineEvents.getGameState() == Engine.GAME_OVER 
+				|| EngineEvents.getGameState() == Engine.RESET) {
+			// If space bar pressed, update play.
+			if(e.getID() == KeyEvent.VK_SPACE)
+				play = true;
 		}
 	}
 
@@ -76,6 +91,14 @@ public class Input implements KeyListener{
 
 	static boolean isRight() {
 		return right;
+	}
+	
+	static boolean getPlay() {
+		if(play) {
+			play = false;
+			return true;
+		} else
+			return play;
 	}
 	
 }

@@ -21,8 +21,8 @@ public class Snake {
 	public static final int HEAD_INDEX = 0;
 
 	// Contains the X and Y values for the Snake.
-	ArrayList<Integer> snakePositionX;
-	ArrayList<Integer> snakePositionY;
+	private ArrayList<Integer> snakePositionX;
+	private ArrayList<Integer> snakePositionY;
 	
 	// Store the previous tail position to add if apple eaten.
 	int[] prevTailPos;

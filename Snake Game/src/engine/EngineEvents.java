@@ -1,5 +1,7 @@
 package engine;
 
+import java.util.ArrayList;
+
 /**
  * 
  *
@@ -12,4 +14,23 @@ public class EngineEvents {
 		return Engine.gameState;
 	}
 	
+	public static ArrayList<Integer> getSnakeXLocation() {
+		return Engine.getSnakeXLocation();
+	}
+	
+	public static ArrayList<Integer> getSnakeYLocation() {
+		return Engine.getSnakeYLocation();
+	}
+	
+	public static int getAppleX() {
+		return Engine.getAppleX();
+	}
+	
+	public static int getAppleY() {
+		return Engine.getAppleX();
+	}
+	
+	public static long getScore() {
+		return Engine.getScore();
+	}
 }
