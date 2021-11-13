@@ -151,18 +151,18 @@ public class Engine extends Thread{
 		if(InputEvents.isUp()) {
 			// Move up.
 			snake.updatePosition(Snake.UP);
-		}
-		if(InputEvents.isDown()) {
+		} else if(InputEvents.isDown()) {
 			// Move down.
 			snake.updatePosition(Snake.DOWN);
-		}
-		if(InputEvents.isLeft()) {
+		} else if(InputEvents.isLeft()) {
 			// Move left.
 			snake.updatePosition(Snake.LEFT);
-		}
-		if(InputEvents.isRight()) {
+		} else if(InputEvents.isRight()) {
 			// Move right.
 			snake.updatePosition(Snake.RIGHT);
+		} else {
+			// No flags set, move up.
+			snake.updatePosition(Snake.UP);
 		}
 	}
 	

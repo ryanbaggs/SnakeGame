@@ -7,6 +7,7 @@ import java.awt.Graphics;
 
 import engine.Engine;
 import engine.EngineEvents;
+import objects.World;
 
 /**
  * Renders game objects to the JPanel. This runs on the Window thread and is 
@@ -51,8 +52,14 @@ public class Renderer {
 	
 	public void drawGame(Graphics g) {
 		// Draw snake.
+		for(int i = 0; i < EngineEvents.getSnakeXLocation().size(); i++)
+			g.fillRect(EngineEvents.getSnakeXLocation().get(i), 
+					EngineEvents.getSnakeYLocation().get(i), 
+					World.BLOCK_SIZE, World.BLOCK_SIZE);
 		
 		// Draw apple.
+		g.fillRect(EngineEvents.getAppleX(), EngineEvents.getAppleY(), 
+				World.BLOCK_SIZE, World.BLOCK_SIZE);
 		
 		// Draw current score.
 		g.drawString("Score: " + Long.toString(EngineEvents.getScore()), 20, 20);
